@@ -1,0 +1,591 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.html");
+    exit();
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home - Hype & Humble</title>
+    <link rel="icon" type="image/png" href="images/H_and_H_Logo.png" />
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Madefor, "Helvetica Neue", Helvetica, Arial, "メイリオ",
+          meiryo, "ヒラギノ角ゴ pro w3", "hiragino kaku gothic pro", sans-serif;
+        font-weight: 400;
+        background-color: #f5f5f5;
+        color: #000;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        flex-direction: column;
+      }
+      body {
+        display: flex;
+      }
+      * {
+        box-sizing: border-box;
+      }
+
+      /* Navbar */
+      .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: white;
+        padding: 10px 20px;
+        width: 100%;
+        height: 80px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        flex-wrap: nowrap;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 20px;
+        padding: 0;
+        margin: 0;
+        margin-left: 8%;
+      }
+
+      .nav-links a {
+        color: #5a3ea1;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .nav-links a:hover {
+        background-color: #8c82cf;
+        padding: 8px 10px;
+        border-radius: 10px;
+      }
+
+      @media screen and (max-width: 768px) {
+        .nav-links li a[href="about.php"] {
+          display: none;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .nav-links li a[href="/help_FAQ.html"] {
+          display: none;
+        }
+      }
+
+      /* Navbar right section */
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-right: 3%;
+      }
+
+      .search-container {
+        display: flex;
+        gap: 10px;
+      }
+
+      .search-container input {
+        padding: 8px;
+        border-radius: 20px;
+        border: 1px solid #d4d1e7;
+        width: 400px;
+        background-color: #fff;
+        height: 35px;
+      }
+
+      .search-container a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #6a5acd;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        font-weight: bold;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 12px;
+        height: 35px;
+        text-decoration: none;
+      }
+
+      .search-icon {
+        display: none;
+        font-size: 20px;
+        color: #5a3ea1;
+        text-decoration: none;
+      }
+
+      @media (max-width: 1000px) {
+        .search-container {
+          display: none;
+        }
+
+        .nav-links a {
+          font-size: 14px;
+        }
+
+        .search-icon {
+          display: block;
+        }
+
+        .nav-links {
+          gap: 10px;
+        }
+      }
+
+      .account-photo img {
+        background-color: #c9bbf2;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        object-fit: cover;
+        cursor: pointer;
+      }
+
+      /* Dropdown */
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        right: 0;
+        background-color: white;
+        min-width: 140px;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        padding: 5px;
+        z-index: 1000;
+        margin-top: 13px;
+      }
+
+      .dropdown-content p {
+        margin-left: 8px;
+      }
+
+      .dropdown-content a {
+        display: block;
+        padding: 8px;
+        text-decoration: none;
+        color: #333;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #f0ecfc;
+      }
+
+      .dropdown-content hr {
+        margin: 10px 0;
+        border: 0.5px solid #ccc;
+      }
+
+      .show {
+        display: block;
+      }
+      /* Main Content Area */
+      .content {
+        flex: 1;
+        margin-top: 70px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        padding: 0 20px;
+        padding-bottom: 10%;
+      }
+      .logo {
+        width: 100px;
+        margin-bottom: 20px;
+      }
+      .main-content h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+        color: #6a1b9a;
+      }
+      .main-content p {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+      .services {
+        margin-top: 20px;
+      }
+      .services h2 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+        color: #6a1b9a;
+      }
+      .services a {
+        display: inline-block;
+        margin: 10px 5px;
+        padding: 10px 20px;
+        background-color: #8e24aa;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+        transition: background 0.3s;
+        border-radius: 5px;
+      }
+      .services a:hover {
+        background-color: #6a1b9a;
+      }
+      content-background {
+        width: 100%;
+        margin-top: auto;
+        z-index: -1;
+      }
+      /* Wave SVG Styles */
+      .background-svg {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        width: 100%;
+        height: auto;
+        z-index: -1;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .content {
+          margin-top: 10px;
+        }
+      }
+
+      /* Footer Styles */
+      .footer {
+        background: linear-gradient(135deg, #4a3a7a 0%, #2e234d 100%);
+        color: #ffffff;
+        padding: 40px 0 20px;
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      }
+
+      .footer-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        gap: 30px;
+      }
+
+      .footer-section {
+        flex: 1;
+        min-width: 220px;
+        margin-bottom: 20px;
+      }
+
+      .footer-section h3 {
+        margin-bottom: 20px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #ffffff;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer-section h3::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 2px;
+        background-color: #a78bfa;
+      }
+
+      .footer-section p {
+        color: #d1d5db;
+        line-height: 1.6;
+        margin-bottom: 15px;
+      }
+
+      .footer-section ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 12px;
+        position: relative;
+        padding-left: 20px;
+      }
+
+      .footer-section ul li::before {
+        content: ">";
+        position: absolute;
+        left: 0;
+        color: #a78bfa;
+        font-weight: bold;
+      }
+
+      .footer-section ul li a {
+        text-decoration: none;
+        color: #d1d5db;
+        transition: all 0.3s ease;
+      }
+
+      .footer-section ul li a:hover {
+        color: #a78bfa;
+        padding-left: 5px;
+      }
+
+      .feedback-form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .feedback-input {
+        width: 100%;
+        min-height: 100px;
+        padding: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+        resize: vertical;
+        margin-bottom: 12px;
+        background-color: rgba(255, 255, 255, 0.05);
+        color: #ffffff;
+        transition: all 0.3s ease;
+      }
+
+      .feedback-input:focus {
+        outline: none;
+        border-color: #a78bfa;
+        box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.2);
+      }
+
+      .feedback-input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .feedback-btn {
+        background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        align-self: flex-start;
+      }
+
+      .feedback-btn:hover {
+        background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Footer Bottom */
+      .footer-bottom {
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      @media (max-width: 768px) {
+        .footer-container {
+          flex-direction: column;
+          gap: 30px;
+        }
+
+        .footer-section {
+          min-width: 100%;
+        }
+
+        .feedback-btn {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <ul class="nav-links">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/home/search/search.php">Browse</a></li>
+        <li><a href="/home/review/review.php">Write a review</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <!-- Search Input for Large Screens -->
+        <div class="search-container">
+          <input type="text" id="searchInput" placeholder="Search" />
+          <a
+            href="#"
+            id="searchLink"
+            onclick="redirectToServices(); return false;"
+            >Search</a
+          >
+        </div>
+
+        <!-- Search Icon for Mobile -->
+        <a href="/home/search/search.php" class="search-icon">🔍</a>
+
+        <div class="account-photo">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/3276/3276535.png"
+            onclick="toggleDropdown()"
+          />
+          <div class="dropdown-content" id="dropdownMenu">
+            <p>Hi Bestie!</p>
+            <hr />
+            <a href="/profileManagement/login.php">Login</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="content">
+      <img
+        src="images/H_and_H_Logo.png"
+        alt="Hype & Humble Logo"
+        class="logo"
+      />
+      <div class="main-content">
+        <h1>Welcome to Hype & Humble</h1>
+        <p>Where motivation meets mayhem!</p>
+        <p>
+          Got a college presentation around the corner? A big game on the line?
+          Wedding day nerves kicking in?
+        </p>
+        <p>
+          Whatever challenge you’re about to face, Hype & Humble is here to get
+          you in the perfect mindset. Whether you need an electric dose of hype
+          to fuel your confidence or a sharp dose of humility to keep you
+          grounded and focused, we tailor the energy you need to perform at your
+          absolute best
+        </p>
+        <p>
+          At Hype & Humble, we believe that every champion needs the right words
+          at the right time. Whether it's fire under your feet or a moment of
+          clarity before the storm. Let’s get you ready to conquer whatever
+          comes next!
+        </p>
+      </div>
+      <div class="services">
+        <h2>EXCITING SERVICES</h2>
+        <p>Get Hyped or Humbled</p>
+        <a href="profileManagement/registration.php">Sign Up</a>
+        <a href="profileManagement/login.php">Log In</a>
+      </div>
+      <div class="content-background">
+        <svg
+          class="background-svg"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 320"
+        >
+          <path
+            fill="#b39ddb"
+            fill-opacity="1"
+            d="M0,224L48,213.3C96,203,192,181,288,186.7C384,192,480,224,576,213.3C672,203,768,149,864,138.7C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+          ></path>
+        </svg>
+        <svg
+          class="background-svg"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 320"
+        >
+          <path
+            fill="#6a1b9a"
+            fill-opacity="1"
+            d="M0,288L48,272C96,256,192,224,288,213.3C384,203,480,213,576,213.3C672,213,768,203,864,192C960,181,1056,171,1152,176C1248,181,1344,203,1392,213.3L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+          ></path>
+        </svg>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>Hype & Humble</h3>
+          <p>
+            Bringing innovation and engagement to digital experiences through
+            creative solutions.
+          </p>
+        </div>
+
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="/index.php">Homepage</a></li>
+            <li><a href="about.php">About Us</a></li>
+            <li><a href="terms_service.php">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Support</h3>
+          <ul>
+            <li><a href="/help_FAQ.php">FAQs</a></li>
+            <li><a href="/support.php">Live Chat</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Feedback</h3>
+          <p>We value your input to help us improve our services.</p>
+          <form
+            action="submit_feedback.php"
+            method="POST"
+            class="feedback-form"
+          >
+            <textarea
+              name="feedback"
+              placeholder="Your feedback helps us improve..."
+              class="feedback-input"
+              required
+            ></textarea>
+            <button type="submit" class="feedback-btn">Submit Feedback</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          &copy;
+          <?php echo date("Y"); ?>
+          Hype & Humble. All rights reserved. | Version 2.1.0
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      function redirectToServices() {
+        console.log("Search link clicked");
+        var query = document.getElementById("searchInput").value;
+        window.location.href =
+          "/home/search/search.php?q=" + encodeURIComponent(query);
+      }
+
+      function toggleDropdown() {
+        document.getElementById("dropdownMenu").classList.toggle("show");
+      }
+
+      window.onclick = function (e) {
+        if (!e.target.matches(".account-photo img")) {
+          let dropdown = document.getElementById("dropdownMenu");
+          if (dropdown && dropdown.classList.contains("show")) {
+            dropdown.classList.remove("show");
+          }
+        }
+      };
+    </script>
+  </body>
+</html>

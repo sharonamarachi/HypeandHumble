@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service - Hype & Humble</title>
+  <link rel="icon" type="image/x-icon" href="../images/H_and_H_Logo.png">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eff0f3;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      color: #6a1b9a;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 100px auto 20px auto;
+      padding: 40px;
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto 20px auto;
+      width: 100px;
+    }
+
+    .section {
+      margin-bottom: 20px;
+      padding: 30px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      border: 2px solid rgb(214, 214, 214);
+    }
+
+    .section h2 {
+      color: #6a1b9a;
+      margin-bottom: 20px;
+    }
+
+    .section p,
+    .section ul {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <?php include __DIR__ . '/navbar.php'; ?>
+
+  <div class="container">
+    <img src="../images/H_and_H_Logo.png" alt="Hype & Humble Logo" class="logo">
+    <h1>Terms of Service and Privacy Policy</h1>
+
+    <div class="section">
+      <h2>Hype & Humble Terms of Service</h2>
+      <p><strong>Effective Date: </strong>28/03/2025<br>
+        <strong>Last Updated: </strong>28/03/2025
+      </p>
+      <p>Welcome to Hype & Humble Co.! By accessing or using our website (the “Site”) and our related services (collectively, the “Services”), you agree to comply with and be bound by these Terms of Service (“Terms”). Please read them carefully. If you do not agree with these Terms, you may not use the Services.</p>
+    </div>
+
+    <div class="section">
+      <h2>1. Acceptance of Terms</h2>
+      <p>By registering for, accessing, or using the Services, you acknowledge that you have read, understood, and agree to be bound by these Terms, as well as our Privacy Policy, which is incorporated by reference.</p>
+    </div>
+
+    <div class="section">
+      <h2>2. Description of Services</h2>
+      <p>Hype & Humble Co. provides an interactive online marketplace where users can request and purchase personalized services from registered Service Providers. These services may include, but are not limited to:</p>
+      <ul>
+        <li>Motivational speeches, videos, theme songs, and pep talks (Hype Services).</li>
+        <li>Comedy roasts, diss tracks, roast battles, and personalized insults (Roast Services).</li>
+      </ul>
+      <p>Users may request services through our platform and communicate with Service Providers to receive customized content.</p>
+    </div>
+
+    <div class="section">
+      <h2>3. User Eligibility</h2>
+      <p>To use the Services, you must:</p>
+      <ul>
+        <li>Be at least 18 years of age or have the consent of a legal guardian.</li>
+        <li>Provide accurate and complete registration information.</li>
+        <li>Accept responsibility for all activities under your account.</li>
+      </ul>
+      <p>Hype & Humble Co. reserves the right to suspend or terminate accounts that provide false information or violate these Terms.</p>
+    </div>
+
+    <div class="section">
+      <h2>4. Account Registration & Security</h2>
+      <p>All users, including Service Providers, must create an account to access the Services. You are responsible for maintaining the confidentiality of your account credentials and for all activities conducted through your account. Hype & Humble Co. is not liable for any loss or damage arising from your failure to comply with this security obligation.</p>
+    </div>
+
+    <div class="section">
+      <h2>5. Service Providers & Content</h2>
+      <p>Service Providers on Hype & Humble Co. are independent contractors who create and provide their own content. The platform does not endorse or guarantee the quality, accuracy, or appropriateness of any content. Service Providers are responsible for:</p>
+      <ul>
+        <li>Ensuring that their content complies with all applicable laws and regulations.</li>
+        <li>Providing clear descriptions of their services and setting appropriate pricing tiers.</li>
+        <li>Fulfilling services in a timely and professional manner.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>6. Prohibited Conduct</h2>
+      <p>Users and Service Providers are prohibited from:</p>
+      <ul>
+        <li>Posting or transmitting any harmful, abusive, defamatory, obscene, or illegal content.</li>
+        <li>Impersonating any person or entity or misrepresenting your affiliation with any person or entity.</li>
+        <li>Engaging in harassment, discrimination, or hateful speech.</li>
+        <li>Violating the intellectual property rights of others.</li>
+        <li>Circumventing or interfering with the functionality of the Site or Services.</li>
+        <li>Using the Services for any illegal or unauthorized purpose.</li>
+        <li>Collecting or harvesting any personally identifiable information from other users.</li>
+      </ul>
+      <p>Hype & Humble Co. reserves the right to remove content or suspend accounts that violate these guidelines.</p>
+    </div>
+
+    <div class="section">
+      <h2>7. Payments & Refunds</h2>
+      <p>Payments are processed through third-party payment processors. All transactions are final unless otherwise determined by Hype & Humble Co. Refunds may be issued at our sole discretion in cases of:</p>
+      <ul>
+        <li>Service Provider failure to deliver the requested service.</li>
+        <li>Inappropriate or offensive content.</li>
+        <li>Technical issues preventing service delivery.</li>
+        <li>Breach of these Terms by a Service Provider.</li>
+      </ul>
+      <p>Users are encouraged to communicate with Service Providers to resolve disputes before requesting refunds.</p>
+    </div>
+
+    <div class="section">
+      <h2>8. Reviews & Ratings</h2>
+      <p>Users may leave reviews and ratings for services they have purchased. All reviews must be honest and comply with our content guidelines. Service Providers may respond to reviews but may not manipulate or falsify reviews in any way.</p>
+    </div>
+
+    <div class="section">
+      <h2>9. Intellectual Property Rights</h2>
+      <p>All content provided by Hype & Humble Co., including but not limited to logos, designs, text, graphics, and software, is the property of Hype & Humble Co. or its licensors. Users and Service Providers retain ownership of content they create, but grant Hype & Humble Co. a non-exclusive, royalty-free license to use, display, and distribute that content on the platform.</p>
+    </div>
+
+    <div class="section">
+      <h2>10. Limitation of Liability</h2>
+      <p>Hype & Humble Co. is not liable for:</p>
+      <ul>
+        <li>Any content created by Service Providers.</li>
+        <li>Any direct, indirect, incidental, special, consequential, or punitive damages arising from your use of the Services.</li>
+        <li>Any unauthorized access to or use of our servers and/or any personal information stored therein.</li>
+        <li>Losses or damages arising from unauthorized use of your account.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>11. Termination of Services</h2>
+      <p>Hype & Humble Co. reserves the right to terminate or suspend access to the Services for any user or Service Provider who violates these Terms or engages in harmful conduct.</p>
+    </div>
+
+    <div class="section">
+      <h2>12. Changes to Terms of Service</h2>
+      <p>Hype & Humble Co. may modify these Terms at any time. Users will be notified of significant changes, and continued use of the Services constitutes acceptance of the updated Terms.</p>
+    </div>
+
+    <div class="section">
+      <h2>13. Governing Law</h2>
+      <p>These Terms shall be governed and construed in accordance with the laws of the Republic of Ireland, without regard to its conflict of law provisions.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <?php include __DIR__ . '/footer.php'; ?>
+</body>
+
+</html>
